@@ -1,21 +1,22 @@
-from flask import Flask
+from flask import Flask, render_template
+import mysql_utilities
+
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
-# @app.route("/")
-# def show_users():
-#     db = mysql.connector.connect(
-#       host="localhost",
-#       user=USER,
-#       password=PASSWORD,
-#       database="DatabaseProject"
-#     )
+@app.route("/")
+def index():
+    return render_template("index.html")
 
-#     cursor = db.cursor()
-#     cursor.execute("SELECT * FROM Customer")
-#     message = ""
-#     for row in cursor.fetchall():
-#         message += str(row)
-#     cursor.close()
-#     db.close()
-#     return f"<p>{row}</p>"
+@app.route("/create_account")
+def create_account():
+    return render_template("create_account")
+
+@app.route("/login")
+def login():
+    return render_template("login")
+
+
+if __name__ == "__main__":
+    app.run()
