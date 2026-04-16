@@ -12,6 +12,11 @@ emailFormCustomer.addEventListener('submit', async (e) => {
     const result = await response.json();
     console.log(response);
     console.log(result);
+
+    if (result.status == "error") {
+        alert(result.message);
+    }
+
 });
 
 emailFormContractor.addEventListener('submit', async (e) => {
