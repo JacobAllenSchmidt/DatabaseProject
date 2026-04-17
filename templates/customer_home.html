@@ -42,11 +42,14 @@
     <h1>Customer Dashboard</h1>
 
     <div class="section">
-        <h2>Your Submitted Job Requests</h2>
+        <h2>Your Submitted Service Requests</h2>
 
-        <div class="job-box">Job 1</div>
-        <div class="job-box">Job 2</div>
-        <div class="job-box">Posted jobs will appear here after the database is connected.</div>
+        {% for job in jobs %}
+            <div class="job-box">
+                Status: {{ job[2] }}<bsr>
+                Description: {{ job[3] }}<br>
+                Clothing type: {{ job[4] }}</div>
+        {% endfor %}
     </div>
 
     <div class="section">

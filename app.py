@@ -11,7 +11,8 @@ app = Flask(__name__)
 load_dotenv("secrets.env")
 EMAIL = os.getenv("EMAIL")
 EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
-app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'fallback-only-for-local-dev')
+SECRET_KEY = os.getenv("SECRET_KEY")
+app.secret_key = SECRET_KEY
 
 @app.route("/")
 def index():
@@ -59,7 +60,8 @@ def login():
         if form_id == "two_factor_customer":
             if int(request.form.get("two_factor_customer")) == code:
                 print(f"Logged in successfully with code {code}")
-                session["user_id"] = execute_read_query(f"SELECT ID FROM CUSTOMER WHERE EMAIL=\"{user_email}\"")
+                result = execute_read_query(f"SELECT CustomerID FROM Customer WHERE EMAIL=\"{user_email}\"")
+                session["user_id"] = int(result[0][0])
                 return redirect("/customer_home")
             else:
                 print("Errors logging in")
@@ -89,7 +91,17 @@ def login():
 
 @app.route("/customer_home")
 def customer_home():
-    return render_template("customer_home.html")
+    user_id = session.get("user_id")
+    print(user_id)
+    
+    if not user_id:
+        return redirect("/login")
+    
+    jobs_list = execute_read_query(f"SELECT * FROM servicerequest WHERE CustomerID = {user_id}")
+    if jobs_list is None:
+        jobs_list = []
+    
+    return render_template("customer_home.html", jobs=jobs_list)
 
 @app.route("/contractor_home")
 def contractor_home():
