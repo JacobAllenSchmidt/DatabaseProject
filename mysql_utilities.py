@@ -13,7 +13,7 @@ def create_connection():
       host='localhost',
       user=USER,
       password=PASSWORD,
-      database="DatabaseProject"
+      database="databaseproject"
     )
     
     if connection.is_connected():
@@ -25,6 +25,7 @@ def create_connection():
     
 def execute_modify_query(query):
   connection = create_connection()
+  cursor = None
   if connection:
     try:
       cursor = connection.cursor()
@@ -54,4 +55,8 @@ def execute_read_query(query):
       connection.close()
       return result
     
-print(execute_read_query("SELECT * FROM CUSTOMER WHERE EMAIL=\"john@example.com\""))
+email = "schmidtjacob920@gmail.com"
+name = "jacob"
+phone_number = "9127591863"
+account_type = "Customer"
+execute_modify_query(f"INSERT INTO {account_type} (Name, Email, PhoneNum) VALUES (\"{name}\", \"{email}\", \"{phone_number}\")")
