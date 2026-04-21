@@ -10,22 +10,25 @@
 <body>
     <h2>Create new TaskMan account</h2>
     <div class="loginDiv">
-    <form method="POST">
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email">
-        <label for="name">Full Name:</label>
-        <input type="text" id="name" name="name">
-        <label for="phonenum">Phone Number:</label>
-        <input type="text" id="phonenum" name="phonenum">
-        <label for="account_type">Account Type:</label>
-        <select id="account_type" name="account_type" required="true">
-            <!-- The placeholder option -->
-            <option value="" selected disabled hidden>Select an option...</option>
-            <option value="Customer">Customer</option>
-            <option value="Contractor">Contractor</option>
-        </select>
-        <input type="submit" value="Create Account">
-    </form>
+        <form method="POST" class="form">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name">
+
+            <label for="phonenum">Phone Number:</label>
+            <input type="text" id="phonenum" name="phonenum">
+            
+            <label for="account_type">Account Type:</label>
+            <select id="account_type" name="account_type" required="true">
+                <!-- The placeholder option -->
+                <option value="" selected disabled hidden>Select an option...</option>
+                <option value="Customer">Customer</option>
+                <option value="Contractor">Contractor</option>
+            </select>
+            <input type="submit" value="Create Account">
+        </form>
     </div>
 </body>
 </html>
