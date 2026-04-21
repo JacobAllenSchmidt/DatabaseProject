@@ -11,15 +11,15 @@
     <h1>Create a New Service Request</h1>
 
     <div class="section">
-        <form>
+        <form method="POST">
             <label for="status">Status of your project (eg, nearly done, beginning, etc): </label>
             <input type="text" name="status" id="status">
-
-            <label for="description">A good description of your project: </label>
-            <input type="text" name="description" id="description">
             
             <label for="clothing_type">What type of clothing does your project involve? </label>
-            <textarea name="clothing_type" id="clothing_type"></textarea>
+            <input type="text" name="clothing_type" id="clothing_type">
+
+            <label for="description">A good description of your project: </label>
+            <textarea name="description" id="description"></textarea>
 
             <input type="submit">
         </form>

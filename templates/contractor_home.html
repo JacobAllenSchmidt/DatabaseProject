@@ -12,18 +12,44 @@
 
     <div class="section">
         <h2>Current Jobs in Progress</h2>
-
-        <div class="job-box">Job 1</div>
-        <div class="job-box">Job 2</div>
-        <div class="job-box">Assigned jobs will appear here after the database is connected.</div>
+        {% for job in curr_jobs %}
+            <div class="job-box">
+                Start date: {{ job[4] }}<br>
+                Finish date: {{ job[5] }}<br>
+                Status: {{ job[6] }}<br>
+                <form method="POST">
+                    <button type="submit" name="finish_job" value="{{ job[0] }}">Mark Job As Finished</button>
+                </form>
+            </div>
+        {% endfor %}
     </div>
 
     <div class="section">
         <h2>Available Jobs on the Marketplace</h2>
+        {% for request in available_service_requests %}
+            <div class="job-box">
+                Status: {{ request[2] }}<br>
+                Description: {{ request[3] }}<br>
+                Clothing type: {{ request[4] }}
+            </div>
+        {% endfor %}
+    </div>
 
-        <div class="job-box">Available Job 1</div>
-        <div class="job-box">Available Job 2</div>
-        <div class="job-box">Available Job 3</div>
+    <div class="section">
+        <h2>Completed Jobs</h2>
+        {% for job in finished_jobs %}
+            <div class="job-box">
+                Start date: {{ job[4] }}<br>
+                Finish date: {{ job[5] }}<br>
+                Status: {{ job[6] }}<br>
+                {% if reviews.get(job[0]|string) != None %}
+                    Review: {{ reviews.get(job[0]|string)[0][2] }}<br>
+                    Review Date: {{ reviews.get(job[0]|string)[0][3] }}
+                {% else  %}
+                    Review not yet received
+                {% endif %}
+            </div>
+        {% endfor %}
     </div>
 
 </body>

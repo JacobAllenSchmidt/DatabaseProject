@@ -13,11 +13,12 @@
     <div class="section">
         <h2>Your Submitted Service Requests</h2>
 
-        {% for job in jobs %}
+        {% for request in curr_service_req %}
             <div class="job-box">
-                Status: {{ job[2] }}<bsr>
-                Description: {{ job[3] }}<br>
-                Clothing type: {{ job[4] }}</div>
+                Status: {{ request[2] }}<br>
+                Description: {{ request[3] }}<br>
+                Clothing type: {{ request[4] }}
+            </div>
         {% endfor %}
     </div>
 
@@ -25,6 +26,37 @@
         <h2>Create a New Service Request</h2>
         <p>Use this option to post a new service request to the marketplace.</p>
         <a href="create_service_request"><button>Create Service Request</button></a>
+    </div>
+
+    <div class="section">
+        <h2>Finished Jobs</h2>
+        {% for job in finished_jobs %}
+            <div class="job-box">
+                Status: {{ job[2] }}<br>
+                Description: {{ job[3] }}<br>
+                Clothing type: {{ job[4] }}<br>
+                {% if reviews.get(job[0]) == None %}
+                    <label for="review">Add your review</label>
+                    <input type="text" name="review" id="review">
+                    <button></button>
+                {% else %}
+                    Review: {{ review.get(job[0])[2] }}
+                {% endif %}
+
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="section">
+        <h2>Received Applications</h2>
+        {% for application in applications %}
+            <div class="job-box">
+                Contractor: {{ application[2] }}<br>
+                Proposed Price: {{ application[3] }}<br>
+                Comment: {{ application[4] }}<br>
+                Application Date: {{ application[5] }}
+            </div>
+        {% endfor %}
     </div>
 
 </body>
