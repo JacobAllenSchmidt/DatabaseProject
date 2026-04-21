@@ -107,6 +107,10 @@ def customer_home():
 def contractor_home():
     return render_template("contractor_home.html")
 
+@app.route("/create_service_request")
+def create_service_request():
+    return render_template("create_service_request.html")
+
 
 if __name__ == "__main__":
     app.run()

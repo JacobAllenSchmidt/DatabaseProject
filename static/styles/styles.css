@@ -7,6 +7,8 @@ h6 {
     font-family: "Playfair Display", Georgia, "Times New Roman", serif
         /*rtl:Amiri, Georgia, "Times New Roman", serif*/
     ;
+
+    color: #333;
 }
 
 .loginDiv {
@@ -17,7 +19,7 @@ h6 {
     border-radius: 5px;
 }
 
-.form {
+form {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -29,10 +31,6 @@ body {
     font-family: Arial, sans-serif;
     margin: 20px;
     background-color: #f4f4f4;
-}
-
-h1, h2 {
-    color: #333;
 }
 
 .section {

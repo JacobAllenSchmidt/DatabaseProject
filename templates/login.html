@@ -2,38 +2,51 @@
 <html>
 <head>
     <title>TaskMan</title>
+    <link rel="stylesheet" href="/static/styles/styles.css">
 </head>
 <body>
-    <h2>Login to your TaskMan account</h2>
-    <p>Customer login</p>
-    <form id="email_form_customer">
-        <input type="hidden" name="form_id" value="email_customer">
-        <label for="email_customer">Email:</label>
-        <input type="email" id="email_customer" name="email_customer">
-        <input type="submit" value="Request 2FA">
-    </form>
+    <h1>Login to your TaskMan account</h1>
+    <div class="section">
+        <h2>Customer login</h2>
+        <form id="email_form_customer">
+            <input type="hidden" name="form_id" value="email_customer">
 
-    <form method="POST" id="two_factor_form_customer">
-        <input type="hidden" name="form_id" value="two_factor_customer">
-        <label for="two_factor_customer">2FA Code:</label>
-        <input type="text" id="two_factor_customer" name="two_factor_customer">
-        <input type="submit" value="Login">
-    </form>
+            <label for="email_customer">Email:</label>
+            <input type="email" id="email_customer" name="email_customer">
 
-    <p>Contractor login</p>
-    <form id="email_form_contracto">
-        <input type="hidden" name="form_id" value="email_contractor">
-        <label for="email_contractor">Email:</label>
-        <input type="email" id="email_contractor" name="email_contractor">
-        <input type="submit" value="Request 2FA">
-    </form>
+            <input type="submit" value="Request 2FA">
+        </form>
 
-    <form method="POST" id="two_factor_form_contractor">
-        <input type="hidden" name="form_id" value="two_factor_contractor">
-        <label for="two_factor_contractor">2FA Code:</label>
-        <input type="text" id="two_factor_contractor" name="two_factor_contractor">
-        <input type="submit" value="Login">
-    </form>
+        <form method="POST" id="two_factor_form_customer">
+            <input type="hidden" name="form_id" value="two_factor_customer">
+
+            <label for="two_factor_customer">2FA Code:</label>
+            <input type="text" id="two_factor_customer" name="two_factor_customer">
+
+            <input type="submit" value="Login">
+        </form>
+    </div>
+
+    <div class="section">
+        <h2>Contractor login</h2>
+        <form id="email_form_contracto">
+            <input type="hidden" name="form_id" value="email_contractor">
+
+            <label for="email_contractor">Email:</label>
+            <input type="email" id="email_contractor" name="email_contractor">
+
+            <input type="submit" value="Request 2FA">
+        </form>
+
+        <form method="POST" id="two_factor_form_contractor">
+            <input type="hidden" name="form_id" value="two_factor_contractor">
+
+            <label for="two_factor_contractor">2FA Code:</label>
+            <input type="text" id="two_factor_contractor" name="two_factor_contractor">
+
+            <input type="submit" value="Login">
+        </form>
+    </div>
 
     <script src="{{ url_for('static', filename='scripts/login.js') }}"></script>
 </body>
