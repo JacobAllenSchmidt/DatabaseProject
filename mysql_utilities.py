@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 load_dotenv("secrets.env")
 USER = os.getenv("DB_USER")
 PASSWORD = os.getenv("DB_PASSWORD")
+NAME = os.getenv("DB_NAME")
 
 def create_connection():
   try:
@@ -13,7 +14,7 @@ def create_connection():
       host='localhost',
       user=USER,
       password=PASSWORD,
-      database="databaseproject"
+      database=NAME
     )
     
     if connection.is_connected():
