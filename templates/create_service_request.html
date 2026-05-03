@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Service Request</title>
+    <link rel="stylesheet" href="/static/styles/styles.css">
+</head>
+<body>
+
+    <h1>Create a New Service Request</h1>
+
+    <div class="section">
+        <form method="POST">
+            <label for="status">Status of your project (eg, nearly done, beginning, etc): </label>
+            <input type="text" name="status" id="status">
+            
+            <label for="clothing_type">What type of clothing does your project involve? </label>
+            <input type="text" name="clothing_type" id="clothing_type">
+
+            <label for="description">A good description of your project: </label>
+            <textarea name="description" id="description"></textarea>
+
+            <input type="submit">
+        </form>
+    </div>
+
+</body>
+</html>

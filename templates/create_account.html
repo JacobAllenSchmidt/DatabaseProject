@@ -2,20 +2,33 @@
 <html>
 <head>
     <title>TaskMan</title>
+     <meta charset="UTF-8">
+    <title>Create Account</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/styles/styles.css">
 </head>
 <body>
-    <h2>Created new TaskMan account</h2>
-    <form>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email">
-        <label for="fname">First Name:</label>
-        <input type="text" id="fname" name="fname">
-        <label for="lname">Last Name:</label>
-        <input type="text" id="lname" name="lanme">
-        <label for="phonenum">Phone Number:</label>
-        <input type="number" id="phonenum" name="phonenum">
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password">
-    </form>>
+    <h2>Create new SoSoSewing account</h2>
+    <div class="section">
+        <form method="POST">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+
+            <label for="name">Full Name:</label>
+            <input type="text" id="name" name="name">
+
+            <label for="phonenum">Phone Number:</label>
+            <input type="text" id="phonenum" name="phonenum">
+            
+            <label for="account_type">Account Type:</label>
+            <select id="account_type" name="account_type" required="true">
+                <!-- The placeholder option -->
+                <option value="" selected disabled hidden>Select an option...</option>
+                <option value="Customer">Customer</option>
+                <option value="Contractor">Contractor</option>
+            </select>
+            <input type="submit" value="Create Account">
+        </form>
+    </div>
 </body>
 </html>

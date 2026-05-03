@@ -3,56 +3,105 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customer Status</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f4f4f4;
-        }
-
-        h1, h2 {
-            color: #333;
-        }
-
-        .section {
-            background-color: white;
-            padding: 15px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .job-box {
-            padding: 10px;
-            margin-top: 10px;
-            background-color: #eeeeee;
-            border: 1px solid #ccc;
-        }
-
-        button {
-            padding: 10px 15px;
-            font-size: 14px;
-            cursor: pointer;
-        }
-    </style>
+    <title>Customer Home</title>
+    <link rel="stylesheet" href="../static/styles/styles.css">
 </head>
 <body>
 
     <h1>Customer Dashboard</h1>
 
     <div class="section">
-        <h2>Your Submitted Job Requests</h2>
+        <h2>Your Submitted Service Requests</h2>
 
-        <div class="job-box">Job 1</div>
-        <div class="job-box">Job 2</div>
-        <div class="job-box">Posted jobs will appear here after the database is connected.</div>
+        {% for request in curr_service_req %}
+            <div class="job-box">
+                Status: {{ request[2] }}<br>
+                Description: {{ request[3] }}<br>
+                Clothing type: {{ request[4] }}
+            </div>
+        {% endfor %}
     </div>
 
     <div class="section">
-        <h2>Create a New Job Request</h2>
-        <p>Use this option to post a new job to the marketplace.</p>
-        <button>Create New Job</button>
+        <h2>Received Applications</h2>
+        <p>(Note: a higher quality score is better)</p>
+        {% for application in applications %}
+            <div class="job-box">
+                Contractor: {{ application[0] }}<br>
+                Proposed Price: ${{ application[3] }}<br>
+                Comment: {{ application[4] }}<br>
+                Application Date: {{ application[5] }}<br>
+                Tailor's Average Rating: {{ application[1] }}<br>
+                Tailor's Number of Ratings: {{ application[2] }}<br>
+                Your Description of Project: {{ application[8] }}<br>
+                Clothing type of project: {{ application[9] }}<br>
+                Tailor's Calculated Quality Score: {{ application[10] }}<br>
+                <form method="POST">
+                    <input type="hidden" name="form_id" value="accept_application">
+                    <input type="hidden" name="application_id" value=" {{ application[6] }}">
+                    <input type="hidden" name="request_id" value=" {{ application[7] }}">
+
+                    <label for="end_date"><br>Deadline date for work to be done:</label>
+                    <input type="date" name="end_date">
+
+                    <button type="submit" name="accepted_application" value="{{ application[0] }}">Accept this application</button>
+                </form>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="section">
+        <h2>Current Jobs</h2>
+        {% for job in curr_jobs %}
+            <div class="job-box">
+                Contractor: {{ job[9] }}<br>
+                End Date: {{ job[5] }}<br>
+                Status: {{ job[6] }}<br>
+                Description: {{ job[7] }}<br>
+                Clothing type: {{ job[8] }}
+            </div> 
+        {% endfor %}
+    </div>
+
+    <div class="section">
+        <h2>Finished Jobs</h2>
+        {% for job in finished_jobs %}
+            <div class="job-box">
+                Contractor: {{ job[9] }}<br>
+                End Date: {{ job[5] }}<br>
+                Status: {{ job[6] }}<br>
+                Description: {{ job[7] }}<br>
+                Clothing type: {{ job[8] }}
+                {% if not job[11] %}
+                    <form method="POST">
+                        <input type="hidden" name="form_id" value="review_contractor">
+                        <input type="hidden" name="job_id" value="{{ job[0] }}">
+
+                        <label for="rating">Add your rating (1-5)</label>
+                        <input type="number" name="rating" id="rating">
+
+                        <label for="review">Add your review</label>
+                        <input type="text" name="review" id="review">
+
+                        <input type="submit">
+                    </form>
+                {% else %}
+                    Rating: {{ job[10] }}<br>
+                    Review: {{ job[11] }}
+                {% endif %}
+            </div> 
+        {% endfor %}
+    </div>
+
+    <div class="section">
+        <h2>Create a New Service Request</h2>
+        <p>Use this option to post a new service request to the marketplace.</p>
+        <a href="create_service_request"><button>Create Service Request</button></a>
+    </div>
+
+    <div class="section">
+        <h2>Logout</h2>
+        <a href="logout"><button>Logout</button></a>
     </div>
 
 </body>
