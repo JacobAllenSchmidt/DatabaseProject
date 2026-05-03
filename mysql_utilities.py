@@ -55,8 +55,5 @@ def execute_read_query(query):
       connection.close()
       return result
     
-email = "schmidtjacob920@gmail.com"
-name = "jacob"
-phone_number = "9127591863"
-account_type = "Customer"
-execute_modify_query(f"INSERT INTO {account_type} (Name, Email, PhoneNum) VALUES (\"{name}\", \"{email}\", \"{phone_number}\")")
+contractor_id = execute_read_query(f"SELECT ContractorID FROM application WHERE ApplicationID = 1")[0][0]
+print(contractor_id)

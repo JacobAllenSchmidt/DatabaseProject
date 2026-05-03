@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contractor Status</title>
+    <title>Contractor Home</title>
     <link rel="stylesheet" href="/static/styles/styles.css">
 </head>
 <body>
@@ -17,7 +17,11 @@
                 Start date: {{ job[4] }}<br>
                 Finish date: {{ job[5] }}<br>
                 Status: {{ job[6] }}<br>
+                Description of Request: {{ job[7] }}<br>
+                Clothing Type of Request: {{ job[8] }}<br>
+                Name of Customer: {{ job[9] }}<br>
                 <form method="POST">
+                    <input type="hidden" name="form_id" value="finish_job_form">
                     <button type="submit" name="finish_job" value="{{ job[0] }}">Mark Job As Finished</button>
                 </form>
             </div>
@@ -25,12 +29,32 @@
     </div>
 
     <div class="section">
-        <h2>Available Jobs on the Marketplace</h2>
+        <h2>Available Service Requests on the Marketplace</h2>
         {% for request in available_service_requests %}
             <div class="job-box">
                 Status: {{ request[2] }}<br>
                 Description: {{ request[3] }}<br>
-                Clothing type: {{ request[4] }}
+                Clothing type: {{ request[4] }}<br>
+                Customer name: {{ request[5] }}
+            </div>
+            <form method="POST">
+                <input type="hidden" name="form_id" value="apply_for_job_form">
+                <button type="submit" name="apply_for_job" value="{{ request[0] }}">Apply</button>
+            </form>
+        {% endfor %}
+    </div>
+
+    <div class="section">
+        <h2>Submitted Applications</h2>
+        {% for application in applications %}
+            <div class="job-box">
+                Proposed Price: ${{ application[3] }}<br>
+                Comment: {{ application[4] }}<br>
+                Application Date: {{ application[5] }}<br>
+                Description of Request: {{ application[9] }}<br>
+                Clothing Type of Request: {{ application[10] }}<br>
+                Name of Customer: {{ application[12] }}<br>
+                </form>
             </div>
         {% endfor %}
     </div>
@@ -42,14 +66,23 @@
                 Start date: {{ job[4] }}<br>
                 Finish date: {{ job[5] }}<br>
                 Status: {{ job[6] }}<br>
-                {% if reviews.get(job[0]|string) != None %}
-                    Review: {{ reviews.get(job[0]|string)[0][2] }}<br>
-                    Review Date: {{ reviews.get(job[0]|string)[0][3] }}
+                Description of Request: {{ job[7] }}<br>
+                Clothing Type of Request: {{ job[8] }}<br>
+                Name of Customer: {{ job[9] }}<br>
+                {% if job[10] is not none %}
+                    Rating: {{ job[10] }}<br>
+                    Review: {{ job[11] }}<br>
+                    Review Date: {{ job[12] }}
                 {% else  %}
                     Review not yet received
                 {% endif %}
             </div>
         {% endfor %}
+    </div>
+
+    <div class="section">
+        <h2>Logout</h2>
+        <a href="logout"><button>Logout</button></a>
     </div>
 
 </body>

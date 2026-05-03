@@ -13,9 +13,7 @@ emailFormCustomer.addEventListener('submit', async (e) => {
     console.log(response);
     console.log(result);
 
-    if (result.status == "error") {
-        alert(result.message);
-    }
+    alert(result.message)
 
 });
 
@@ -30,4 +28,6 @@ emailFormContractor.addEventListener('submit', async (e) => {
     const result = await response.json();
     console.log(response);
     console.log(result);
+
+    alert(result.message)
 });
